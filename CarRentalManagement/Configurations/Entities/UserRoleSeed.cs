@@ -8,8 +8,6 @@ namespace CarRentalManagement.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<IdentityUserRole<string>> builder)
         {
-            builder.HasKey(ur => new { ur.UserId, ur.RoleId });
-
             builder.HasData(
                 new IdentityUserRole<string>
                 {
