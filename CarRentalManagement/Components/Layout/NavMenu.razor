@@ -15,24 +15,50 @@
                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
         <AuthorizeView>
             <Authorized>
                 <div class="nav-item px-3">
                     <NavLink class="nav-link" href="Account/Manage">
                         <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
                     </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <AuthorizeView Roles="Administrator" Context="innerContext">
+                        <NavLink class="nav-link" href="makes">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Makes
+                        </NavLink>
+                    </AuthorizeView>
+                </div>
+                <div class="nav-item px-3">
+                    <AuthorizeView Roles="Administrator" Context="innerContext">
+                        <NavLink class="nav-link" href="models">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Models
+                        </NavLink>
+                    </AuthorizeView>
+                </div>
+                <div class="nav-item px-3">
+                    <AuthorizeView Roles="Administrator" Context="innerContext">
+                        <NavLink class="nav-link" href="colours">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Colours
+                        </NavLink>
+                    </AuthorizeView>
+                </div>
+                <div class="nav-item px-3">
+                    <AuthorizeView Roles="Administrator" Context="innerContext">
+                        <NavLink class="nav-link" href="vehicles">
+                            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Vehicles
+                        </NavLink>
+                    </AuthorizeView>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="customers">
+                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Customers
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                     <NavLink class="nav-link" href="bookings">
+                         <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Bookings
+                     </NavLink>
                 </div>
                 <div class="nav-item px-3">
                     <form action="Account/Logout" method="post">
@@ -57,12 +83,6 @@
                 </div>
             </NotAuthorized>
         </AuthorizeView>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="samplepage">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Sample Page
-            </NavLink>
-        </div>
     </nav>
 </div>
 

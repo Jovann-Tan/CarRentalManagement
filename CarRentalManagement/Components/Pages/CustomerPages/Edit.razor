@@ -79,8 +79,19 @@ else
     [SupplyParameterFromForm]
     private Customer? Customer { get; set; }
 
+    private string userId = "System";
+
+    @inject AuthenticationStateProvider authenticationStateProvider
     protected override async Task OnInitializedAsync()
     {
+        var authState = await authenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        var userIdClaim = user.FindFirst("userId");
+        if (userIdClaim != null)
+        {
+            userId = userIdClaim.Value;
+        }
         using var context = DbFactory.CreateDbContext();
         Customer ??= await context.Customer.FirstOrDefaultAsync(m => m.Id == Id);
 
@@ -95,6 +106,10 @@ else
     private async Task UpdateCustomer()
     {
         using var context = DbFactory.CreateDbContext();
+
+        Customer.UpdatedBy = userId;
+        Customer.DateUpdated = DateTime.Now;
+
         context.Attach(Customer!).State = EntityState.Modified;
 
         try
